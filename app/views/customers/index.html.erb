@@ -1,9 +1,14 @@
 <ul class="text-center">
-<%= turbo_frame_tag "customers-list-page-#{@pagy.page}" do %>
-
-<% @customers.each do |customer| %>
-<li><%= "#{customer.name}: #{customer.age}" %></li>
-<% end %>
-<%= turbo_frame_tag "customers-list-page-#{@pagy.next}", src: customers_path(page: @pagy.next), loading: :lazy %>
-<% end %>
+  <%= turbo_frame_tag "customers-list-page-#{@pagy.page}" do %>
+    <% @customers.each do |customer| %>
+      <li><%= "#{customer.name}: #{customer.age}" %></li>
+    <% end %>
+    <%= turbo_frame_tag "customers-list-page-#{@pagy.next}", src: customers_path(page: @pagy.next), loading: :lazy do %>
+      <div class="flex flex-col items-center">
+        <% 10.times do %>
+          <div class="mb-2 mr-4 w-2/12 h-6 animate-pulse bg-gray-500 rounded-sm"></div>
+        <% end %>
+      </div>
+    <% end %>
+  <% end %>
 <ul>
