@@ -1,5 +1,9 @@
 <ul class="text-center">
+<%= turbo_frame_tag "customers-list-page-#{@pagy.page}" do %>
+
 <% @customers.each do |customer| %>
 <li><%= "#{customer.name}: #{customer.age}" %></li>
+<% end %>
+<%= turbo_frame_tag "customers-list-page-#{@pagy.next}", src: customers_path(page: @pagy.next), loading: :lazy %>
 <% end %>
 <ul>

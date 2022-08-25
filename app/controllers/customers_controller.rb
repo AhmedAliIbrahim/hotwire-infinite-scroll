@@ -1,5 +1,7 @@
 class CustomersController < ApplicationController
+  include Pagy::Backend
+
   def index
-    @customers = Customer.all
+    @pagy, @customers = pagy(Customer.all)
   end
 end
